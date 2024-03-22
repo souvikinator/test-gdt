@@ -8,10 +8,10 @@ var ball_state = null
 func _ready():
 	pass # Replace with function body.
 
-"""
+
 func _integrate_forces(state):
-	state.transform.origin = Vector2(150,150)
-"""
+	self.rotation_degrees = 0
+
 
 func _physics_process(delta):
 	ball_state = {"v": linear_velocity, "p":global_position, "c": false }

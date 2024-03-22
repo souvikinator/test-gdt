@@ -9,7 +9,7 @@ friction = 0.0
 bounce = 1.0
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 382, 10 )
+extents = Vector2( 382, 133.5 )
 
 [node name="Board" type="Node2D"]
 script = ExtResource( 3 )
@@ -20,11 +20,15 @@ physics_material_override = SubResource( 2 )
 
 [node name="Player" parent="." groups=["Player"] instance=ExtResource( 1 )]
 position = Vector2( 226, 258 )
+linear_damp = 0.5
+__meta__ = {
+"_editor_description_": ""
+}
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2( 372, 0 )
+position = Vector2( 372, -123.5 )
 shape = SubResource( 1 )
 
 [node name="StaticBody2D2" type="StaticBody2D" parent="."]

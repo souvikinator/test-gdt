@@ -13,6 +13,10 @@ func _physics_process(delta):
 	print("Board.gd {x}".format({"x":board_state}))
 """
 
+func _physics_process(delta):
+	var ball_position = $Ball.global_position
+	$Player.look_at(ball_position)
+
 func get_state():
 	return $Player.player_state
 	#print("Board.gd {x}".format({"x":board_state}))

@@ -31,3 +31,5 @@ margin_left = -20.0
 margin_top = 39.0
 margin_right = 20.0
 margin_bottom = 53.0
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
