@@ -11,6 +11,8 @@ func _ready():
 
 func _integrate_forces(state):
 	self.rotation_degrees = 0
+	if self.sleeping:
+		self.linear_velocity = Vector2.ZERO
 
 
 func _physics_process(delta):
