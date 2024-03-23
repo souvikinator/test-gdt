@@ -20,7 +20,6 @@ physics_material_override = SubResource( 2 )
 
 [node name="Player" parent="." groups=["Player"] instance=ExtResource( 1 )]
 position = Vector2( 226, 258 )
-linear_damp = 0.5
 __meta__ = {
 "_editor_description_": ""
 }

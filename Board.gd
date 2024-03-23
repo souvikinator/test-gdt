@@ -14,8 +14,9 @@ func _physics_process(delta):
 """
 
 func _physics_process(delta):
-	var ball_position = $Ball.global_position
-	$Player.look_at(ball_position)
+	pass
+	#var ball_position = $Ball.global_position
+	#$Player.look_at(ball_position)
 
 func get_state():
 	return $Player.player_state
