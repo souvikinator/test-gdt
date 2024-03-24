@@ -6,12 +6,6 @@ var game_state = null
 func _ready():
 	pass # Replace with function body.
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.\
-"""
-func _physics_process(delta):
-	game_state = $Board.board_state
-	print("Game.gd {x}".format({"x":game_state}))
-"""
 
 func get_state():
 	return $Board.get_state()

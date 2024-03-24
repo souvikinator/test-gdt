@@ -9,7 +9,6 @@ var stream_data = []
 
 var file = null
 var stream_file_path = "res://stream_data.json"
-var consume_file_path = "res://consume_data.json"
 
 func _ready():
 	$Player.is_playing = is_playing
@@ -26,7 +25,8 @@ func _physics_process(delta):
 			$Player.state = board_state.paddle
 	else:
 		if board_state:
-			stream_data.push_back(board_state)
+			stream_data.push_back(board_state) # for logging into file
+			
 		if $Player.state and $Ball.state:
 			id+=1
 			board_state = {
@@ -45,8 +45,6 @@ func _exit_tree():
 	if is_playing:
 		print("WRITE TO FILE")
 		save_file_data(stream_file_path,stream_data)
-	else:
-		save_file_data(consume_file_path, {"ball":$Player.consuming_data, "paddle":$Player.consuming_data})
 	print("EXIT from Board")
 
 func load_file_data(file_name):
@@ -59,6 +57,5 @@ func load_file_data(file_name):
 func save_file_data(file_name, data):
 	file.open(file_name, File.WRITE)
 	file.store_line(to_json(data))
-	stream_data = []
 	file.close()
 	print("File saved")

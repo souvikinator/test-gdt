@@ -30,6 +30,10 @@ config/name="test-project"
 run/main_scene="res://Game.tscn"
 config/icon="res://icon.png"
 
+[debug]
+
+shapes/collision/shape_color=Color( 0.117647, 0.933333, 0.207843, 0.419608 )
+
 [gui]
 
 common/drop_mouse_on_gui_input_disabled=true
