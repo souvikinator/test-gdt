@@ -42,9 +42,15 @@ click={
  ]
 }
 
+[layer_names]
+
+2d_physics/layer_1="walls"
+2d_physics/layer_2="player"
+2d_physics/layer_3="ball"
+
 [network]
 
-limits/debugger_stdout/max_chars_per_second=15000
+limits/debugger_stdout/max_chars_per_second=20000
 limits/debugger_stdout/max_messages_per_frame=100
 
 [physics]

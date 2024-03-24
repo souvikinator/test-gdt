@@ -17,6 +17,8 @@ script = ExtResource( 3 )
 [node name="Ball" parent="." groups=["Ball"] instance=ExtResource( 2 )]
 position = Vector2( 181, 110 )
 physics_material_override = SubResource( 2 )
+contacts_reported = 1
+contact_monitor = true
 
 [node name="Player" parent="." groups=["Player"] instance=ExtResource( 1 )]
 position = Vector2( 226, 258 )
