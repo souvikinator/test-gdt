@@ -20,10 +20,10 @@ const GAME_ID = "ice-hockey" # CHANGE HERE
 var consume_state = [] # received while consuming
 
 # nodes
-onready var game_node = get_node_or_null("/root/Game")
+@onready var game_node = get_node_or_null("/root/Game")
 
 # JS interface
-onready var js_console = JavaScript.get_interface("console")
+@onready var js_console = JavaScript.get_interface("console")
 
 var game_data_consume_callback = JavaScript.create_callback(self,"set_consume_state")
 
@@ -58,7 +58,7 @@ func _physics_process(delta):
 		if not current_game_state:
 			return
 			
-		var send_data_string = JSON.print(current_game_state)
+		var send_data_string = JSON.stringify(current_game_state)
 		#print(send_data_string)
 		
 
@@ -108,7 +108,9 @@ func set_consume_state(data):
 	
 	var game_data_raw = data[0]
 	if game_data_raw:
-		var game_data_parse = JSON.parse(game_data_raw)
+		var test_json_conv = JSON.new()
+		test_json_conv.parse(game_data_raw)
+		var game_data_parse = test_json_conv.get_data()
 		if game_data_parse.error != OK:
 			# not throwing error cus it;s data related error 
 			# and can be fixed by fixing data format

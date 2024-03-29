@@ -1,4 +1,4 @@
-extends KinematicBody2D
+extends CharacterBody2D
 
 class_name Paddle
 
@@ -8,6 +8,7 @@ var is_playing = false
 var state = null
 var id = 0
 
+const push = 50
 
 func _ready():
 	self.input_pickable = true
@@ -18,7 +19,7 @@ func _physics_process(delta):
 	if not is_playing:
 		# consume
 		if state:
-			consume_paddle_state(state)
+			consume_paddle_state(state,delta)
 	else:
 		# send
 		handle_drag_input(delta)
@@ -29,7 +30,9 @@ func handle_drag_input(delta):
 	var target_pos = get_global_mouse_position()
 	if is_selected:
 		var velocity = calc_velocity(target_pos, current_pos, delta)
-		move_and_slide(velocity)
+		set_velocity(velocity)
+		move_and_slide()
+		apply_impulse(push)
 		state = {
 			"id": id, 
 			"paddle":{"vel":[velocity.x,velocity.y], "pos":[current_pos.x,current_pos.y]}, 
@@ -46,7 +49,7 @@ func handle_drag_input(delta):
 		
 		$Label.text = "{v}\n{p}".format({"v": Vector2.ZERO, "p":current_pos })
 
-func consume_paddle_state(state):
+func consume_paddle_state(state, delta):
 	var mouse = state.mouse
 	var target_pos = Vector2(mouse.pos[0], mouse.pos[1])
 	var current_pos = Vector2(state.paddle.pos[0], state.paddle.pos[1])
@@ -56,14 +59,17 @@ func consume_paddle_state(state):
 		self.global_position = current_pos
 		is_initial_position_used = true
 				
-	var velocity = Vector2.ZERO
+	var velocity = calc_velocity(target_pos, current_pos, delta)
 			
 	if mouse.active:
 		# consume paddle velocity
 		velocity = Vector2(state.paddle.vel[0],state.paddle.vel[1])
-		move_and_slide(velocity)
+		set_velocity(velocity)
+		move_and_slide()
+		apply_impulse(push)
 	else:
-		move_and_slide(velocity)
+		set_velocity(Vector2.ZERO)
+		
 			
 	$Label.text = "{v}\n{p}".format({"v": velocity, "p": self.global_position })
 
@@ -71,15 +77,21 @@ func consume_paddle_state(state):
 ##################### UTIL ##################################
 
 func calc_velocity(target_pos, current_pos, delta):
-	var new_pos = global_position.linear_interpolate(target_pos, 500 * delta)
+	var new_pos = global_position.lerp(target_pos, 100 * delta)
 	var velocity = new_pos - current_pos
 	return velocity
+	
+func apply_impulse(push):
+	for  i in get_slide_collision_count():
+		var c = get_slide_collision(i)
+		if c.get_collider() is RigidBody2D:
+			c.get_collider().apply_central_impulse(-c.get_normal()*push)
 
 ##################### EVENTS ################################
 
 func _input(event: InputEvent):
 	if event is InputEventMouseButton:
-		if event.button_index == BUTTON_LEFT and not event.is_pressed():
+		if event.button_index == MOUSE_BUTTON_LEFT and not event.is_pressed():
 			is_selected = false
 
 func _on_Player_input_event(viewport, event, shape_idx):

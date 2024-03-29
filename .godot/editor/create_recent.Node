@@ -1,0 +1,7 @@
+Line2D
+ColorRect
+Sprite2D
+Marker2D
+Label
+CollisionShape2D
+CharacterBody2D

@@ -9,12 +9,11 @@ var is_playing = false
 var state = null
 var collided = false
 
-func _integrate_forces(s:Physics2DDirectBodyState):
-	self.rotation_degrees = 0
+#func _integrate_forces(s:PhysicsDirectBodyState2D):
+#	self.rotation_degrees = 0
 
 func _ready():
 	pass
-
 
 func _physics_process(delta):
 	# if playing then set state
