@@ -1,5 +1,5 @@
 res://default_env.tres
-res://Ball.tscn
 res://Board.tscn
+res://Ball.tscn
 res://Game.tscn
 res://test_player.tscn
