@@ -59,7 +59,7 @@ func consume_paddle_state(state, delta):
 		self.global_position = current_pos
 		is_initial_position_used = true
 				
-	var velocity = calc_velocity(target_pos, current_pos, delta)
+	#var velocity = calc_velocity(target_pos, current_pos, delta)
 			
 	if mouse.active:
 		# consume paddle velocity

@@ -17,8 +17,8 @@ height = 62.0
 
 [node name="Ball" type="RigidBody2D"]
 physics_material_override = SubResource("2")
-max_contacts_reported = 1
 contact_monitor = true
+max_contacts_reported = 1
 linear_damp = 0.5
 script = ExtResource("2")
 
