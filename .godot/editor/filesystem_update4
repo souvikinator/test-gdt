@@ -2,4 +2,4 @@ res://default_env.tres
 res://Board.tscn
 res://Ball.tscn
 res://Game.tscn
-res://test_player.tscn
+res://Board.gd

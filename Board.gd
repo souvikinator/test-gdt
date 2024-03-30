@@ -2,7 +2,7 @@ extends Node2D
 
 @onready var id = 0
 
-@onready var is_playing = false
+@onready var is_playing = true
 @onready var board_state = null
 @onready var consume_data = []
 @onready var stream_data = []
